@@ -1,0 +1,113 @@
+/* Animated Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #000000, #09235a, #020404, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+    text-align: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.main-container {
+    padding: 40px;
+}
+
+/* Unique Title */
+.main-title {
+    font-size: 50px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ea0101, #c80432);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(5, 2, 3, 0.7);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #d62f2f; }
+    to { text-shadow: 0 0 25px #d62626; }
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+/* Glassmorphism Search Box */
+.search-box {
+    background: rgba(253, 253, 253, 0.153);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+}
+
+input, select {
+    background: rgba(0, 0, 0, 0.782);
+    color: rgb(130, 130, 130);
+}
+
+button {
+    background: linear-gradient(45deg, #00a6ff, #ff4b2b);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00fbff;
+}
+
+/* Movie Cards */
+.movie-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.card {
+    background: rgba(16, 255, 251, 0.08);
+    border-radius: 15px;
+    padding: 15px;
+    width: 220px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 229, 255, 0.5);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.rating {
+    color: gold;
+    font-weight: bold;
+}
+
+.genre {
+    color: #ffffff;
+}

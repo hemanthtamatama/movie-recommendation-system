@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ movie.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(255, 75, 43, 0.5);
+        }
+
+        .similar-section {
+            margin-top: 50px;
+        }
+
+        .similar-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .similar-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .similar-card {
+            width: 180px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .similar-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .similar-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        .similar-card h4 {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .cast-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .cast-list li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-overlay"></div>
+
+<div class="main-container">
+
+    <h1 class="main-title">{{ movie.title }}</h1>
+
+    <div class="movie-details-card" style="text-align:center;">
+
+        <img src="{{ url_for('static', filename='posters/' + movie.poster) }}" 
+             alt="{{ movie.title }}" 
+             style="width:300px;border-radius:10px;">
+
+        <h3>⭐ Rating: {{ movie.rating }}</h3>
+        <h3>🎭 Genre: {{ movie.genre }}</h3>
+
+        <p style="max-width:700px;margin:20px auto;">
+            {{ movie.overview }}
+        </p>
+
+        {% if movie.year %}
+        <h4>📅 Year: {{ movie.year }}</h4>
+        {% endif %}
+
+        {% if movie.director %}
+        <h4>🎬 Director: {{ movie.director }}</h4>
+        {% endif %}
+
+        {% if movie.cast %}
+        <h4>👥 Cast:</h4>
+        <ul class="cast-list">
+            {% for actor in movie.cast.split(',') %}
+            <li>• {{ actor.strip() }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <a href="/" class="back-btn">
+            ⬅ Back to Home
+        </a>
+
+    </div>
+
+    <!-- 🎬 SIMILAR MOVIES SECTION -->
+    <div class="similar-section" style="text-align:center;">
+        <h2 class="similar-title">🎬 Similar Movies</h2>
+
+        <div class="similar-container">
+            {% for similar in similar_movies %}
+            <a href="{{ url_for('movie_details_page', title=similar.title) }}" 
+               style="text-decoration:none;color:white;">
+                <div class="similar-card">
+                    <img src="{{ url_for('static', filename='posters/' + similar.poster) }}">
+                    <h4>{{ similar.title }}</h4>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
